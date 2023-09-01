@@ -1,13 +1,12 @@
-#NetflixGPT
--create-react-app
--configured tailwind
--
+# NetflixGPT
+    -create-react-app
+    -configured tailwind
 
 
 
 
 
-#features
+# features
 -Login/Sign up
     -Login and Singup Form
     -Redirect to Browse Page
