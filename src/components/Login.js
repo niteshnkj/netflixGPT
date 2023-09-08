@@ -1,13 +1,20 @@
 import { useRef, useState } from "react";
 import Header from "./Header";
 import { checkValidData } from "../utils/validate";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { auth } from "../utils/firebase";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
+  //we can use states too but we're using useRef to see what is there in the input box
   const name = useRef(null);
   const email = useRef(null);
   const password = useRef(null);
+  //validation for name is still pending
   const handleButtonClick = () => {
     const message = checkValidData(
       // name.current.value,
@@ -15,7 +22,46 @@ const Login = () => {
       password.current.value
     );
     setErrorMessage(message);
+    //if any message is there then return else signin or signup
+    if (message) return;
+    //signin /signup logic
+
+    if (!isSignInForm) {
+      //sign up logic
+
+      createUserWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          const user = userCredential.user;
+          console.log(user);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorCode + "-" + errorMessage);
+        });
+    } else {
+      //sign in logic
+      signInWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          const user = userCredential.user;
+          console.log(user);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorCode + "-" + errorMessage);
+        });
+    }
   };
+  // function to toggle between signin and signup form
   const toggleSignInForm = () => {
     setIsSignInForm(!isSignInForm);
   };
