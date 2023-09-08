@@ -1,7 +1,9 @@
 # NetflixGPT
     - create-react-app
     - configured tailwind
-
+    - Header
+    - Login Form
+    - signup Form
 # Features
 - Login/Sign up
     - Login and Singup Form
