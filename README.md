@@ -1,25 +1,33 @@
 # NetflixGPT
  - create-react-app
- - configured tailwind
+ - Configured tailwind
  - Header
  - Routing of App
  - Login Form
  - signup Form
  - Form validation
  - useRef Hook
- - Firebase setup
+ - Firebase setu
  - Deployed app to production
  - Create signup user Account
  - Implement Sign in user Api
- - created redux Store with userSlice
+ - Created redux Store with userSlice
  - Implemented Sign Out
  - Update Profile
  - BugFix: Sign up user displayName and profile picture update
- - if the user is not logged in redirect /browse to Login Page and vice-versa
+ - If the user is not logged in redirect /browse to Login Page and vice-versa
  - Unsubscribed to the onAuthStateChanged callback
- - Add hardcoded values to the constants.
- - Register for TMDB API & create an app & get access token
+ - Added hardcoded values to the constants.
+ - Registered for TMDB API & create an app & get access token
  - Get data from TMDB now playing movies list API.
+ - Custom Hook for now Playing Movies
+ - Created movieSlice
+ - Update store woth movies Data
+ - Planning for MainContainer & SecondaryContainer
+ - Fetched Data for Trailer Video
+ - Updated Store with Trailer Video Data
+ - Embedded the youtube video and make it autoplay and mute
+ - Tailwind classes to make MainContainer look awesome
 
 # Features
 - Login/Sign up
