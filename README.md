@@ -14,7 +14,10 @@
  - created redux Store with userSlice
  - Implemented Sign Out
  - Update Profile
- - Fetch from TMDB Movies
+ - BugFix: Sign up user displayName and profile picture update
+ - if the user is not logged in redirect /browse to Login Page and vice-versa
+ - Unsubscribed to the onAuthStateChanged callback
+ - Add hardcoded values to the constants.
 
 # Features
 - Login/Sign up
@@ -29,5 +32,4 @@
          - MovieLists * N
 - NetflixGPT
     - Search Bar
-    - Movie suggestions 
-    -        
+    - Movie suggestions      
