@@ -1,5 +1,4 @@
-[This is an external link to NetflixGPT](netflixgpt-ecb74.web.app)
-[This is an external link to NetflixGPT](netflixgpt-ecb74.firebaseapp.com)
+[Click Here to see live website](netflixgpt-ecb74.web.app)
 
 
 
