@@ -5,7 +5,7 @@ import { useEffect } from "react";
 
 const useMovieTrailer = (movieId) => {
   const dispatch = useDispatch();
-  // const trailerVideo = useSelector((store) => store.movies?.trailerVideo);
+  const trailerVideo = useSelector((store) => store.movies.trailerVideo);
   //either we can can use state whenever my trailer key will change our video will change accordingly we can also use redux store thats the second way
   // const [trailerId, setTrailerId] = useState(null);
   //fetch my trailer && updating the store with trailer video data
@@ -26,7 +26,7 @@ const useMovieTrailer = (movieId) => {
     dispatch(addTrailerVideo(trailer));
   };
   useEffect(() => {
-    getMovieVideos();
+    !trailerVideo && getMovieVideos();
   }, []);
 };
 export default useMovieTrailer;

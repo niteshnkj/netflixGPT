@@ -4,10 +4,10 @@
  - Header
  - Routing of App
  - Login Form
- - signup Form
+ - Signup Form
  - Form validation
  - useRef Hook
- - Firebase setu
+ - Firebase setup
  - Deployed app to production
  - Create signup user Account
  - Implement Sign in user Api
