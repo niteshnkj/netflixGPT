@@ -1,4 +1,4 @@
-[Click Here to see live website]: https://netflixgpt-ecb74.web.app/
+# https://netflixgpt-ecb74.web.app/
 
 
 
