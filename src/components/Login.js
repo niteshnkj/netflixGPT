@@ -77,7 +77,7 @@ const Login = () => {
       )
         .then((userCredential) => {
           const user = userCredential.user;
-          console.log(user);
+          // console.log(user);
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -98,13 +98,14 @@ const Login = () => {
         <img
           src={BG_URL}
           alt="backgroundImg"
+          className="h-screen w-screen object-cover"
         />
       </div>
       <form
         onSubmit={(e) => e.preventDefault()}
-        className=" w-3/12 absolute p-12 bg-black my-36 mx-auto right-0 left-0 text-white rounded-lg bg-opacity-80"
+        className="w-full md:w-3/12 absolute p-12 bg-black my-36 mx-auto right-0 left-0 text-white rounded-lg bg-opacity-80"
       >
-        <h1 className="font-bold text-white text-3xl py-4 ">
+        <h1 className="font-bold  text-3xl py-4 ">
           {isSignInForm ? "Sign In" : "Sign Up"}
         </h1>
         {!isSignInForm && (
@@ -127,7 +128,7 @@ const Login = () => {
           placeholder="Password"
           className="p-4 my-4 w-full bg-gray-700 rounded-lg"
         />
-        <p className="text-red-500 font-bold px-2">{errorMessage}</p>
+        <p className="text-red-500 font-bold text-lg px-2">{errorMessage}</p>
 
         <button
           onClick={handleButtonClick}

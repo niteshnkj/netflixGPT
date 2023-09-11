@@ -5,13 +5,15 @@ import { BG_URL } from "../utils/constant";
 
 const GptSearchPage = () => {
   return (
-    <div>
-      <div className="fixed -z-10">
-        <img src={BG_URL} alt="backgroundImg" />
+    <>
+      <div className="fixed -z-10 ">
+        <img className="h-screen w-screen object-cover" src={BG_URL} alt="backgroundImg" />
       </div>
-      <GptSearchBar />
-      <GptMovieSuggestions />
-    </div>
+      <div className="">
+        <GptSearchBar />
+        <GptMovieSuggestions />
+      </div>
+    </>
   );
 };
 

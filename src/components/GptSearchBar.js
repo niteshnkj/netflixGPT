@@ -44,22 +44,22 @@ const GptSearchBar = () => {
     dispatch(
       addGptMovieResult({ movieNames: gptMovies, movieResults: tmdbResults })
     );
-    // promise,all will take array of promises
+    // promise,all will take array of promisesrounded-lg
   };
   return (
-    <div className="pt-[10%] flex justify-center">
+    <div className="pt-[45%] md:pt-[10%] flex justify-center">
       <form
-        className="w-1/2  bg-black grid grid-cols-12"
+        className="w-full md:w-1/2  bg-black grid grid-cols-12"
         onSubmit={(e) => e.preventDefault()}
       >
         <input
           ref={searchText}
           type="text"
           placeholder={lang[langKEY].getSearchPlaceholder}
-          className="p-4 m-4 col-span-9 "
+          className="p-4 m-4 col-span-9 rounded-lg md:rounded-none"
         />
         <button
-          className="py-2 px-4 col-span-3 m-4 bg-red-700 text-white rounded-lg"
+          className="py-2 px-4 col-span-4 md:col-span-3 m-4 bg-red-700 text-white rounded-lg"
           onClick={handleGptSearchClick}
         >
           {lang[langKEY].search}
