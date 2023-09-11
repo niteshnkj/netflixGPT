@@ -1,6 +1,12 @@
+[This is an external link to NetflixGPT](netflixgpt-ecb74.web.app)
+[This is an external link to NetflixGPT](netflixgpt-ecb74.firebaseapp.com)
+
+
+
 # NetflixGPT
  - create-react-app
- - Configured tailwind
+ - Configured tailwindnetflixgpt-ecb74.web.app
+Default
  - Header
  - Routing of App
  - Login Form
