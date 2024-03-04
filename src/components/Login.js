@@ -1,26 +1,39 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Header from "./Header";
 import { checkValidData } from "../utils/validate";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   updateProfile,
+  getAuth,
+  GoogleAuthProvider,
+  getRedirectResult,
 } from "firebase/auth";
-import { auth } from "../utils/firebase";
 
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 import { BG_URL, USER_AVATAR } from "../utils/constant";
+import toast from "react-hot-toast";
+import googleicon from "../assets/googleicon.svg";
+// import { useGoogleLogin } from "@react-oauth/google";
+// import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
 
   const dispatch = useDispatch();
+  // const navigate = useNavigate();
+  const auth = getAuth();
   //we can use states too but we're using useRef to see what is there in the input box
   const name = useRef(null);
-  const email = useRef(null);
-  const password = useRef(null);
+  const email = useRef("test@netflixclone.com");
+  const password = useRef("Test@123");
+
+  useEffect(() => {
+    email.current.value = "test@netflixclone.com";
+    password.current.value = "Test@123";
+  }, []);
   //validation for name is still pending
   const handleButtonClick = () => {
     const message = checkValidData(
@@ -61,12 +74,14 @@ const Login = () => {
             })
             .catch((error) => {
               setErrorMessage(error.message);
+              toast.error(error.message);
             });
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
           setErrorMessage(errorCode + "-" + errorMessage);
+          toast.error(errorMessage);
         });
     } else {
       //sign in logic
@@ -81,10 +96,35 @@ const Login = () => {
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          setErrorMessage(errorCode + "-" + errorMessage);
+          setErrorMessage("User Not found");
+          toast.error("User Not Found");
         });
     }
   };
+  const login = () => {
+    getRedirectResult(auth)
+      .then((result) => {
+        // This gives you a Google Access Token. You can use it to access Google APIs.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+
+        // The signed-in user info.
+        const user = result.user;
+        // IdP data available using getAdditionalUserInfo(result)
+        // ...
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        // ...
+      });
+  };
+
   // function to toggle between signin and signup form
   const toggleSignInForm = () => {
     setIsSignInForm(!isSignInForm);
@@ -128,6 +168,16 @@ const Login = () => {
           className="my-4 w-full rounded-lg bg-gray-700 p-4"
         />
         <p className="px-2 text-lg font-bold text-red-500">{errorMessage}</p>
+        {/* <button
+          className="my-6 flex w-full justify-center gap-2 rounded-lg bg-white p-3"
+          onClick={() => login()}
+        >
+          {" "}
+          <span className="pl-2 pt-2">
+            <img src={googleicon} alt="google_icon" />
+          </span>
+          <p className="w-full text-[#858585]">Sign in with Google</p>
+        </button> */}
 
         <button
           onClick={handleButtonClick}

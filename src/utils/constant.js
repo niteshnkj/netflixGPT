@@ -19,3 +19,4 @@ export const SUPPORTED_LANGUAGES = [
   { identifier: "spanish", name: "Spanish" },
 ];
 export const OPENAI_KEY = process.env.REACT_APP_OPENAI_KEY;
+export const GOOGLE_CLIEN_ID = process.env.REACT_APP_GOOGLE_CLIENT_ID;

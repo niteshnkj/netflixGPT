@@ -49,7 +49,7 @@ const MovieDetails = () => {
             </div>
             <div className="font col-span-10 col-start-3 flex flex-col  gap-2 font-medium">
               <div className="text-6xl font-bold ">
-                <h1 className="font-[4rem]">
+                <h1 className="font-[3.5rem]">
                   {movieDetailsData.original_title}
                 </h1>
               </div>
