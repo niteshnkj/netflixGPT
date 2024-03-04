@@ -15,7 +15,7 @@ const GptSearchBar = () => {
       "https://api.themoviedb.org/3/search/movie?query=" +
         movie +
         "&include_adult=false&language=en-US&page=1",
-      API_OPTIONS
+      API_OPTIONS,
     );
     const json = await data.json();
     return json.results;
@@ -42,24 +42,24 @@ const GptSearchBar = () => {
     const tmdbResults = await Promise.all(promiseArray);
     // console.log(tmdbResults);
     dispatch(
-      addGptMovieResult({ movieNames: gptMovies, movieResults: tmdbResults })
+      addGptMovieResult({ movieNames: gptMovies, movieResults: tmdbResults }),
     );
     // promise,all will take array of promisesrounded-lg
   };
   return (
-    <div className="pt-[45%] md:pt-[10%] flex justify-center">
+    <div className="flex justify-center pt-[45%] md:pt-[10%]">
       <form
-        className="w-full md:w-1/2  bg-black grid grid-cols-12"
+        className="grid w-full  grid-cols-12 bg-black md:w-1/2"
         onSubmit={(e) => e.preventDefault()}
       >
         <input
           ref={searchText}
           type="text"
           placeholder={lang[langKEY].getSearchPlaceholder}
-          className="p-4 m-4 col-span-9 rounded-lg md:rounded-none"
+          className="col-span-9 m-4 rounded-lg p-4 md:rounded-none"
         />
         <button
-          className="py-2 px-4 col-span-4 md:col-span-3 m-4 bg-red-700 text-white rounded-lg"
+          className="col-span-4 m-4 rounded-lg bg-red-700 px-4 py-2 text-white md:col-span-3"
           onClick={handleGptSearchClick}
         >
           {lang[langKEY].search}

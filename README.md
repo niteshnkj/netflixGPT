@@ -66,3 +66,12 @@ Default
 - NetflixGPT
     - Search Bar
     - Movie suggestions      
+
+# Features to be added
+- dark mode
+- Movie Details Page(done)
+- google signin button
+- Loader to be added
+- option to upload profile picture
+- form to rent movies
+- UI improvements

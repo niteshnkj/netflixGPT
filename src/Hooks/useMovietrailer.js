@@ -15,7 +15,7 @@ const useMovieTrailer = (movieId) => {
       "https://api.themoviedb.org/3/movie/" +
         movieId +
         "/videos?language=en-US",
-      API_OPTIONS
+      API_OPTIONS,
     );
     const json = await data.json();
     // console.log(json);

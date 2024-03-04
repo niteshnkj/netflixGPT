@@ -32,7 +32,7 @@ const Header = () => {
             email: email,
             displayName: displayName,
             photoURL: photoURL,
-          })
+          }),
         );
         navigate("/browse");
       } else {
@@ -53,13 +53,13 @@ const Header = () => {
     dispatch(changeLanguage(e.target.value));
   };
   return (
-    <div className="absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10 flex flex-col md:flex-row justify-between ">
-      <img className="w-44 mx-auto md:mx-0" src={LOGO} alt="logo" />
+    <div className="absolute z-10 flex w-screen flex-col justify-between bg-gradient-to-b from-black px-8 py-2 md:flex-row ">
+      <img className="mx-auto w-44 md:mx-0" src={LOGO} alt="logo" />
       {user && (
-        <div className="flex p-2 justify-between">
+        <div className="flex justify-between p-2">
           {showGptSearch && (
             <select
-              className="p-2 m-2 bg-gray-900 text-white  "
+              className="m-2 bg-gray-900 p-2 text-white  "
               onChange={handleLanguageChange}
             >
               {SUPPORTED_LANGUAGES.map((lang) => (
@@ -71,13 +71,13 @@ const Header = () => {
           )}
 
           <button
-            className="py-2 px-4 mx-4 my-2 rounded-lg  bg-purple-800 text-white"
+            className="mx-4 my-2 rounded-lg bg-purple-800 px-4  py-2 text-white"
             onClick={handleGptSearchClick}
           >
             {showGptSearch ? "Go Back" : "GPT Search"}
           </button>
           <img
-            className="hidden md:block w-12 h-12"
+            className="hidden h-12 w-12 md:block"
             src={user?.photoURL}
             alt="user_avatar"
           />

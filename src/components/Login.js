@@ -26,7 +26,7 @@ const Login = () => {
     const message = checkValidData(
       // name.current.value,
       email.current.value,
-      password.current.value
+      password.current.value,
     );
     setErrorMessage(message);
     //if any message is there then return else signin or signup
@@ -39,7 +39,7 @@ const Login = () => {
       createUserWithEmailAndPassword(
         auth,
         email.current.value,
-        password.current.value
+        password.current.value,
       )
         .then((userCredential) => {
           const user = userCredential.user;
@@ -56,7 +56,7 @@ const Login = () => {
                   email: email,
                   displayName: displayName,
                   photoURL: photoURL,
-                })
+                }),
               );
             })
             .catch((error) => {
@@ -73,7 +73,7 @@ const Login = () => {
       signInWithEmailAndPassword(
         auth,
         email.current.value,
-        password.current.value
+        password.current.value,
       )
         .then((userCredential) => {
           const user = userCredential.user;
@@ -102,9 +102,9 @@ const Login = () => {
       </div>
       <form
         onSubmit={(e) => e.preventDefault()}
-        className="w-full md:w-3/12 absolute p-12 bg-black my-36 mx-auto right-0 left-0 text-white rounded-lg bg-opacity-80"
+        className="absolute left-0 right-0 mx-auto my-36 w-full rounded-lg bg-black bg-opacity-80 p-12 text-white md:w-3/12"
       >
-        <h1 className="font-bold  text-3xl py-4 ">
+        <h1 className="py-4  text-3xl font-bold ">
           {isSignInForm ? "Sign In" : "Sign Up"}
         </h1>
         {!isSignInForm && (
@@ -112,30 +112,30 @@ const Login = () => {
             ref={name}
             type="text"
             placeholder="Your Name"
-            className="p-4 my-4 w-full bg-gray-700 rounded-lg"
+            className="my-4 w-full rounded-lg bg-gray-700 p-4"
           />
         )}
         <input
           ref={email}
           type="text"
           placeholder="Email Adress"
-          className="p-4 my-4 w-full bg-gray-700 rounded-lg"
+          className="my-4 w-full rounded-lg bg-gray-700 p-4"
         />
         <input
           ref={password}
           type="password"
           placeholder="Password"
-          className="p-4 my-4 w-full bg-gray-700 rounded-lg"
+          className="my-4 w-full rounded-lg bg-gray-700 p-4"
         />
-        <p className="text-red-500 font-bold text-lg px-2">{errorMessage}</p>
+        <p className="px-2 text-lg font-bold text-red-500">{errorMessage}</p>
 
         <button
           onClick={handleButtonClick}
-          className="p-4 my-6 bg-red-700 w-full rounded-lg"
+          className="my-6 w-full rounded-lg bg-red-700 p-4"
         >
           {isSignInForm ? "Sign In" : "Sign Up"}
         </button>
-        <p className="py-4 cursor-pointer" onClick={toggleSignInForm}>
+        <p className="cursor-pointer py-4" onClick={toggleSignInForm}>
           {isSignInForm
             ? "New to Netflix? Signup Now"
             : "Already registered Sign In Now"}

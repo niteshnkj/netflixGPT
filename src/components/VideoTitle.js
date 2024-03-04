@@ -1,13 +1,13 @@
 const VideoTitle = ({ title, overview }) => {
   return (
-    <div className="w-screen aspect-video pt-[20%] p-6 md:px-24 absolute text-white bg-gradient-to-r from-black">
-      <h1 className="text-2xl md:text-6xl font-bold">{title}</h1>
-      <p className="hidden md:inline-block py-6 tetx-lg w-1/4">{overview}</p>
-      <div className="my-4 md:0">
-        <button className=" bg-white text-black py-1  md:py-4 px-3 md:px-12 text-xl  rounded-lg hover:bg-opacity-80">
+    <div className="absolute aspect-video w-screen bg-gradient-to-r from-black p-6 pt-[20%] text-white md:px-24">
+      <h1 className="text-2xl font-bold md:text-6xl">{title}</h1>
+      <p className="tetx-lg hidden w-1/4 py-6 md:inline-block">{overview}</p>
+      <div className="md:0 my-4">
+        <button className=" rounded-lg bg-white px-3  py-1 text-xl text-black hover:bg-opacity-80  md:px-12 md:py-4">
           Play
         </button>
-        <button className="hidden md:inline-block mx-2  bg-gray-500 text-white p-4 px-12 text-xl bg-opacity-50 rounded-lg ">
+        <button className="mx-2 hidden rounded-lg  bg-gray-500 bg-opacity-50 p-4 px-12 text-xl text-white md:inline-block ">
           More Info
         </button>
       </div>
