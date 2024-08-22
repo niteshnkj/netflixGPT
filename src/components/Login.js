@@ -14,13 +14,21 @@ import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 import { BG_URL, USER_AVATAR } from "../utils/constant";
 import toast from "react-hot-toast";
-import googleicon from "../assets/googleicon.svg";
+// import { ReCaptcha } from "react-recaptcha-v3";
+
+// import googleicon from "../assets/googleicon.svg";
 // import { useGoogleLogin } from "@react-oauth/google";
 // import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
+  // const [showPassword, setShowPassword] = useState(false);
+  // const recaptchaRef = useRef();
+
+  // const handleRecaptchaChange = (value) => {
+  //   console.log("ReCAPTCHA value:", value);
+  // };
 
   const dispatch = useDispatch();
   // const navigate = useNavigate();
@@ -101,29 +109,29 @@ const Login = () => {
         });
     }
   };
-  const login = () => {
-    getRedirectResult(auth)
-      .then((result) => {
-        // This gives you a Google Access Token. You can use it to access Google APIs.
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
+  // const login = () => {
+  //   getRedirectResult(auth)
+  //     .then((result) => {
+  //       // This gives you a Google Access Token. You can use it to access Google APIs.
+  //       const credential = GoogleAuthProvider.credentialFromResult(result);
+  //       const token = credential.accessToken;
 
-        // The signed-in user info.
-        const user = result.user;
-        // IdP data available using getAdditionalUserInfo(result)
-        // ...
-      })
-      .catch((error) => {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // The email of the user's account used.
-        const email = error.customData.email;
-        // The AuthCredential type that was used.
-        const credential = GoogleAuthProvider.credentialFromError(error);
-        // ...
-      });
-  };
+  //       // The signed-in user info.
+  //       const user = result.user;
+  //       // IdP data available using getAdditionalUserInfo(result)
+  //       // ...
+  //     })
+  //     .catch((error) => {
+  //       // Handle Errors here.
+  //       const errorCode = error.code;
+  //       const errorMessage = error.message;
+  //       // The email of the user's account used.
+  //       const email = error.customData.email;
+  //       // The AuthCredential type that was used.
+  //       const credential = GoogleAuthProvider.credentialFromError(error);
+  //       // ...
+  //     });
+  // };
 
   // function to toggle between signin and signup form
   const toggleSignInForm = () => {
@@ -152,20 +160,20 @@ const Login = () => {
             ref={name}
             type="text"
             placeholder="Your Name"
-            className="my-4 w-full rounded-lg bg-gray-700 p-4"
+            className="my-4 w-full rounded-lg bg-gray-700 p-4 focus:outline-none"
           />
         )}
         <input
           ref={email}
           type="text"
           placeholder="Email Adress"
-          className="my-4 w-full rounded-lg bg-gray-700 p-4"
+          className="my-4 w-full rounded-lg bg-gray-700 p-4 focus:outline-none"
         />
         <input
           ref={password}
           type="password"
           placeholder="Password"
-          className="my-4 w-full rounded-lg bg-gray-700 p-4"
+          className="my-4 w-full rounded-lg bg-gray-700 p-4 focus:outline-none"
         />
         <p className="px-2 text-lg font-bold text-red-500">{errorMessage}</p>
         {/* <button
@@ -187,9 +195,14 @@ const Login = () => {
         </button>
         <p className="cursor-pointer py-4" onClick={toggleSignInForm}>
           {isSignInForm
-            ? "New to Netflix? Signup Now"
-            : "Already registered Sign In Now"}
+            ? "New to NetflixGpt? Signup Now"
+            : "Already registered? SignIn Now"}
         </p>
+        {/* <ReCaptcha
+          sitekey="6LezlQgqAAAAAMbeCM64Jfne4vE6JEIMsUouLF1-"
+          ref={recaptchaRef}
+          onChange={handleRecaptchaChange}
+        /> */}
       </form>
     </div>
   );

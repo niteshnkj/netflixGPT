@@ -1,14 +1,16 @@
-import openai from "../utils/openai";
 import { useSelector, useDispatch } from "react-redux";
 import lang from "../utils/languageConstant";
 import { useRef } from "react";
 import { API_OPTIONS } from "../utils/constant";
 import { addGptMovieResult } from "../utils/gptSlice";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const GptSearchBar = () => {
   const langKEY = useSelector((store) => store.config.lang);
   const searchText = useRef(null);
   const dispatch = useDispatch();
+
+  const genAI = new GoogleGenerativeAI(process.env.REACT_APP_GEMENIAI_KEY);
   //search movie in tmdb
   const searchMovieTMDB = async (movie) => {
     const data = await fetch(
@@ -21,30 +23,33 @@ const GptSearchBar = () => {
     return json.results;
   };
   const handleGptSearchClick = async () => {
-    //Make an api call to GPT API and get Movie results
-    const gptQuery =
+    //Make an api call to GEMENI API and get Movie results
+    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+    const prompt =
       "Act as a Movie recommendation system and suggest some movies for the query" +
       searchText.current.value +
       "only give me names of 5 movies, comma seperated like the example result given ahead. Example Result: Gadar, Sholay, Don, Golmaal, Koi Mil Gaya";
-    const gptResults = await openai.chat.completions.create({
-      messages: [{ role: "user", content: gptQuery }],
-      model: "gpt-3.5-turbo",
-    });
-    if (!gptResults.choices) {
+    const result = await model.generateContent(prompt);
+    const response = await result.response;
+    const text = response.text();
+    console.log(text);
+    console.log(typeof text);
+    if (!text) {
       // TODO Error handling here
     }
-    // console.log(gptResults.choices?.[0].message?.content);
-    const gptMovies = gptResults.choices?.[0].message?.content.split(",");
+    const gptMovies = text.split(",");
+    console.log("after split", gptMovies);
     //[array of movies]
     //for each movie i will search TMDB API
     const promiseArray = gptMovies.map((movie) => searchMovieTMDB(movie));
+    console.log(promiseArray);
     //   [promies.promise,promise,promise,promise]
     const tmdbResults = await Promise.all(promiseArray);
-    // console.log(tmdbResults);
+    console.log(tmdbResults);
     dispatch(
       addGptMovieResult({ movieNames: gptMovies, movieResults: tmdbResults }),
     );
-    // promise,all will take array of promisesrounded-lg
+    // promise,all will take array of promises rounded-lg
   };
   return (
     <div className="flex justify-center pt-[45%] md:pt-[10%]">
