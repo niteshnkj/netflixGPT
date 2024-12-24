@@ -3,6 +3,7 @@ import { API_OPTIONS, IMG_CDN_URL } from "../utils/constant";
 import { useParams } from "react-router-dom";
 import { TMDB_MOVIE_API } from "../utils/constant";
 import Header from "./Header";
+import Loader from "./Loader";
 
 const MovieDetails = () => {
   const [movieDetailsData, setmovieDetailsData] = useState(null);
@@ -22,7 +23,9 @@ const MovieDetails = () => {
     fetchmovieDetails();
   }, [movieId]);
 
-  if (!movieDetailsData) return <p>Loading...</p>;
+  if (!movieDetailsData) {
+    return <Loader />;
+  }
 
   const formattedTime = (minutes) =>
     new Date(minutes * 60 * 1000).toISOString().substr(11, 8);

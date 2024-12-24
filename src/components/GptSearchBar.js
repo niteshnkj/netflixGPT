@@ -32,8 +32,8 @@ const GptSearchBar = () => {
     const result = await model.generateContent(prompt);
     const response = await result.response;
     const text = response.text();
-    console.log(text);
-    console.log(typeof text);
+    // console.log(text);
+    // console.log(typeof text);
     if (!text) {
       // TODO Error handling here
     }
