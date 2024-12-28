@@ -1,14 +1,17 @@
 import Header from "./Header";
 import useNowPlayingMovies from "../Hooks/useNowPlayingMovies";
-import MainContainer from "./MainContainer";
-import SecondaryContainer from "./SecondaryContainer";
 import usePopularMovies from "../Hooks/usePopularMovies";
 import useTopRatedMovies from "../Hooks/useTopRatedMovies";
 import useUpcomingMovies from "../Hooks/useUpcomingMovies";
 import { useSelector } from "react-redux";
 import GptSearchPage from "./GptSearchPage";
+import { lazy, Suspense } from "react";
+import MainContainerSkeleton from "./skeleton/MainContainerSkeleton";
+import SecondaryContainerSkeleton from "./skeleton/SecondaryContainerSkeleton";
 
 const Browse = () => {
+  const MainContainer = lazy(() => import("./MainContainer"));
+  const SecondaryContainer = lazy(() => import("./SecondaryContainer"));
   const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
   useNowPlayingMovies();
   usePopularMovies();
@@ -21,8 +24,12 @@ const Browse = () => {
         <GptSearchPage />
       ) : (
         <>
-          <MainContainer />
-          <SecondaryContainer />
+          <Suspense fallback={<MainContainerSkeleton />}>
+            <MainContainer />
+          </Suspense>
+          <Suspense fallback={<SecondaryContainerSkeleton />}>
+            <SecondaryContainer />
+          </Suspense>
         </>
       )}
 

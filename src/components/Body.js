@@ -1,17 +1,22 @@
-import React from "react";
-import Login from "./Login";
+import React, { lazy, Suspense } from "react";
 import Browse from "./Browse";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MovieDetails from "./MovieDetails";
 import { Toaster } from "react-hot-toast";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import { GOOGLE_CLIEN_ID } from "../utils/constant";
+import LoginSkeleton from "./skeleton/LoginSkeleton";
+// import { GOOGLE_CLIEN_ID } from "../utils/constant";
 
 const Body = () => {
+  const Login = lazy(() => import("./Login"));
   const appRouter = createBrowserRouter([
     {
       path: "/",
-      element: <Login />,
+      element: (
+        <Suspense fallback={<LoginSkeleton />}>
+          <Login />
+        </Suspense>
+      ),
     },
     {
       path: "/browse",

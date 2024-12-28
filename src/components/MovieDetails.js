@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { API_OPTIONS, IMG_CDN_URL } from "../utils/constant";
 import { useParams } from "react-router-dom";
 import { TMDB_MOVIE_API } from "../utils/constant";
-import Header from "./Header";
 import Loader from "./Loader";
 
 const MovieDetails = () => {
